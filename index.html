@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+<title>VDAY.HTML</title>
+</head>
+<body>
+
+
+  <div class="floating-hearts"></div>
+<div class="floating-rose-container"></div>
+
+
+
+  <div class="wrapper">
+
+   <div class="envelope-container" onclick="openLetter()">
+    <div class="hover-hearts"></div>
+          <div class="envelope">
+              <div class="flap"></div>
+              <div class="message"> 💗View Message💗</div>
+          </div>
+      </div>
+
+      <div id="letter" class="letter-paper hidden">
+          <h2>❤️❤️❤️</h2>
+
+        <p>
+            Happy valentines Day to my very pretty and my most cherished and loved person in my whole life.
+            I just wanna say that I love you and I always have, ever since the very first day that I met you.
+
+            My Love I want you to know that I will always choose to love you even in bad days, always remember that I 
+            am here to love and support you in every possible ways I can think of. I always appreciated the efforts that
+            you've put into our relationship even the minimal one's, I have always appreciated everything because I know that 
+            appreciating a loved one's effort is very important and I can never not appreciate any effort that you do for us.
+
+            My Love I hope that you will enjoy this day to heart's content even if wala ta nagka kuyog karun and I have no physical 
+            gifts na mahatag nimo karun, I promise that mo bawi ko nimo sunod MY Love. 
+
+            Again Happy valentines Day to the Love of My life, and I Love You so much always and in all kinds of ways. Mwuah!!!🥰❤️❤️❤️
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+const envelopeContainer = document.querySelector(".envelope-container");
+const hoverHeartsContainer = document.querySelector(".hover-hearts");
+let hoverInterval;
+const heartEmojis = ["💖", "💘", "💕", "💗", "❤️"];
+
+envelopeContainer.addEventListener("mouseenter", () => {
+    hoverInterval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("hover-heart");
+        heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        
+        // Random starting position within the envelope
+        const rect = envelopeContainer.getBoundingClientRect();
+        const x = Math.random() * rect.width;
+        const y = Math.random() * rect.height;
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        
+        // Random size
+        heart.style.fontSize = (12 + Math.random() * 20) + "px";
+
+        hoverHeartsContainer.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 2000);
+    }, 150);
+});
+
+envelopeContainer.addEventListener("mouseleave", () => {
+    clearInterval(hoverInterval);
+});
+
+function openLetter() {
+    document.querySelector(".envelope-container").style.display = "none";
+    document.getElementById("letter").classList.remove("hidden");
+
+    const heartsContainer = document.querySelector('.floating-hearts');
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0";
+        heart.style.fontSize = (15 + Math.random() * 20) + "px";
+        heart.style.animation = "floatUp 4s linear forwards";
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 800);
+
+    const roseContainer = document.querySelector(".floating-rose-container");
+    setInterval(() => {
+        const rose = document.createElement("img");
+        rose.src = "roses.png.png";
+        rose.classList.add("rose");
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.width = (40 + Math.random() * 40) + "px";
+        rose.style.animationDuration = (5 + Math.random() * 5) + "s";
+        roseContainer.appendChild(rose);
+        setTimeout(() => rose.remove(), 10000);
+    }, 800);
+}
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>
